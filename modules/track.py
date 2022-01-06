@@ -36,16 +36,20 @@ class VideoTracker:
          
         # cv2.putText(im_moi,str(frame_id), (10,30), cv2.FONT_HERSHEY_SIMPLEX , 1 , (255,255,0) , 2)
 
-        bbox_xyxy = boxes.copy()
-        bbox_xyxy[:, 2] += bbox_xyxy[:, 0]
-        bbox_xyxy[:, 3] += bbox_xyxy[:, 1]
-
         result_dict = {
             'tracks': [],
             'boxes': [],
             'labels': [],
             'scores': []
         }
+
+        if len(boxes) == 0:
+            return result_dict
+
+        bbox_xyxy = boxes.copy()
+        bbox_xyxy[:, 2] += bbox_xyxy[:, 0]
+        bbox_xyxy[:, 3] += bbox_xyxy[:, 1]
+
         labels__ = labels.copy()
         for i in range(self.num_classes):
             mask = (labels__ == i)     
