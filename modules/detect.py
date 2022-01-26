@@ -9,7 +9,9 @@ class ImageDetect:
     def __init__(self, args, config):
         self.device = torch.device("cuda" if torch.cuda.is_available() else 'cpu')   
     
-        self.mapping_dict = args.mapping     
+        self.mapping_dict = args.mapping_dict
+        if args.mapping is not None:
+            self.mapping_dict = args.mapping
 
         net = get_model(args, config)
         self.class_names = net.class_names

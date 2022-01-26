@@ -35,6 +35,7 @@ if __name__ == '__main__':
 
 
     # If you not use any weight and want to use pretrained on COCO, uncomment these lines
+    # Values are as follows; 0: two-wheels, 1: four-wheels, 2: bus, 3: truck
     MAPPING_DICT = {
         0: 0,
         1: 0,
