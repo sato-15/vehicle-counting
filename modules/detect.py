@@ -42,7 +42,8 @@ class ImageDetect:
                 
                 if self.mapping_dict is not None:
                     keep_idx = [enum for enum, i in enumerate(outputs["classes"]) if i in self.included_classes]
-                    labels = [self.mapping_dict[int(i)-1] for i in outputs["classes"][keep_idx]]
+                    # keep_idx is greater than or equal to 0
+                    labels = [self.mapping_dict[int(i)] for i in outputs["classes"][keep_idx]]
                     outputs["classes"] = np.array(labels)
                     outputs['scores'] = outputs['scores'][keep_idx]
                     outputs['bboxes'] = outputs['bboxes'][keep_idx]
